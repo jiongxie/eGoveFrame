@@ -1,0 +1,10 @@
+127.0.0.1 - - [24/Nov/2021:12:09:29 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:33 +0900] "GET /defaultweb/ HTTP/1.1" 404 1083
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:33 +0900] "GET /defaultweb/css/egovframework/sample.css;jsessionid=DD247D739FF26266C4AE4B047C5AAE85 HTTP/1.1" 200 10111
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:33 +0900] "GET /defaultweb/images/egovframework/example/error_bg.jpg HTTP/1.1" 404 1039
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:33 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:52 +0900] "GET /defaultweb/normalboard/ HTTP/1.1" 404 1039
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:52 +0900] "GET /defaultweb/css/egovframework/sample.css HTTP/1.1" 200 10111
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:09:52 +0900] "GET /defaultweb/images/egovframework/example/error_bg.jpg HTTP/1.1" 404 1039
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:10:04 +0900] "GET /defaultweb/normalboard/normalboardList.jsp HTTP/1.1" 404 1039
+0:0:0:0:0:0:0:1 - - [24/Nov/2021:12:26:34 +0900] "GET /defaultweb/jsp/normalboard/normalboardList.jsp HTTP/1.1" 404 1039

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Guest">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="guestSerarchVO" type="guest.vo.GuestDefaultVO"/>
+	
+	<resultMap id="guest" class="guest.vo.GuestVO">
+		<result property="idx" column="idx" columnIndex="1"/>
+		<result property="content" column="content" columnIndex="2"/>
+		<result property="name" column="name" columnIndex="3"/>
+	</resultMap>
+	
+	<insert id="guestDAO.insertGuest_S">
+		<![CDATA[
+			INSERT INTO guest 
+				( idx
+				  , content
+				  , name )
+			VALUES ( #idx#
+				  , #content#
+				  , #name# )
+		]]>
+	</insert>
+	
+	<update id="guestDAO.updateGuest_S">
+		<![CDATA[
+			UPDATE guest
+			SET idx=#idx#
+				, content=#content#
+				, name=#name#
+			]]>
+	</update>
+	
+	<delete id="guestDAO.deleteGuest_S">
+		<![CDATA[
+			DELETE FROM guest 
+			]]>
+	</delete>
+	
+	<select id="guestDAO.selectGuest_S" resultMap="guest">
+		<![CDATA[
+			SELECT
+				idx
+				, content
+				, name
+			FROM guest
+			]]>
+	</select>
+	
+	<select id="guestDAO.selectGuestList_D" parameterClass="guestSerarchVO" resultClass="egovMap">
+			SELECT
+								idx
+								, content
+								, name
+					FROM guest
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				idx = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				content LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY 
+				limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="guestDAO.selectGuestListTotCnt_S" parameterClass="guestSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM guest
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				idx = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				content LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+
+</sqlMap>

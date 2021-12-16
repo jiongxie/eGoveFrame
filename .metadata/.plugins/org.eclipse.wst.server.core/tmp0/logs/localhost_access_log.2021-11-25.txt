@@ -1,0 +1,5 @@
+127.0.0.1 - - [25/Nov/2021:12:19:31 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [25/Nov/2021:12:19:34 +0900] "GET /defaultweb/ HTTP/1.1" 404 1083
+0:0:0:0:0:0:0:1 - - [25/Nov/2021:12:19:34 +0900] "GET /defaultweb/css/egovframework/sample.css;jsessionid=79300AE4A9421F5581449D6FC0A60CAF HTTP/1.1" 200 10111
+0:0:0:0:0:0:0:1 - - [25/Nov/2021:12:19:34 +0900] "GET /defaultweb/images/egovframework/example/error_bg.jpg HTTP/1.1" 404 1039
+0:0:0:0:0:0:0:1 - - [25/Nov/2021:12:19:34 +0900] "GET /favicon.ico HTTP/1.1" 404 818

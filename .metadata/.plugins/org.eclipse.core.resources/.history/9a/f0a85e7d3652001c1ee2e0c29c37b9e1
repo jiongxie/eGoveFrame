@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="guest.dao.GusetMapper">
+	
+
+	<resultMap id="guset" type="guest.vo.GusetVO">
+		<result property="idx" column="idx" />
+		<result property="name" column="name" />
+		<result property="content" column="content" />
+	</resultMap>
+	
+	<insert id="insertGuset">
+		<![CDATA[
+			INSERT INTO guset 
+				( idx
+				  , name
+				  , content )
+			VALUES ( #{idx}
+				  , #{name}
+				  , #{content} )
+		]]>
+	</insert>
+	
+	<update id="updateGuset">
+		<![CDATA[
+			UPDATE guset
+			SET idx=#{idx}
+				, name=#{name}
+				, content=#{content}
+			  where idx = #{idx}
+			]]>
+	</update>
+	
+	<delete id="deleteGuset">
+		<![CDATA[
+			DELETE FROM guset
+			where idx = #{idx} 
+			]]>
+	</delete>
+	
+	<select id="selectGuset" resultMap="guset">
+		<![CDATA[
+			SELECT
+				idx
+				, name
+				, content
+			FROM guset
+			]]>
+	</select>
+	
+	<select id="selectGusetList" parameterType="guest.vo.GusetVO" resultType="egovMap">
+			SELECT
+								idx
+								, name
+								, content
+					FROM guset
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					idx = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY 
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectGusetListTotCnt" parameterType="guest.vo.GusetVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM guset
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					idx = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

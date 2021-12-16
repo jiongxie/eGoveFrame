@@ -1,0 +1,87 @@
+package guest.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
+import guest.vo.GusetVO;
+import guest.vo.GusetDefaultVO;
+
+/**
+ * @Class Name : GusetDAO.java
+ * @Description : Guset DAO Class
+ * @Modification Information
+ *
+ * @author Brian
+ * @since 2021-11-29
+ * @version 1.0
+ * @see
+ *  
+ *  Copyright (C)  All right reserved.
+ */
+
+@Repository("gusetDAO")
+public class GusetDAO extends EgovAbstractDAO {
+
+	/**
+	 * guset을 등록한다.
+	 * @param vo - 등록할 정보가 담긴 GusetVO
+	 * @return 등록 결과
+	 * @exception Exception
+	 */
+    public String insertGuset(GusetVO vo) throws Exception {
+        return (String)insert("gusetDAO.insertGuset_S", vo);
+    }
+
+    /**
+	 * guset을 수정한다.
+	 * @param vo - 수정할 정보가 담긴 GusetVO
+	 * @return void형
+	 * @exception Exception
+	 */
+    public void updateGuset(GusetVO vo) throws Exception {
+        update("gusetDAO.updateGuset_S", vo);
+    }
+
+    /**
+	 * guset을 삭제한다.
+	 * @param vo - 삭제할 정보가 담긴 GusetVO
+	 * @return void형 
+	 * @exception Exception
+	 */
+    public void deleteGuset(GusetVO vo) throws Exception {
+        delete("gusetDAO.deleteGuset_S", vo);
+    }
+
+    /**
+	 * guset을 조회한다.
+	 * @param vo - 조회할 정보가 담긴 GusetVO
+	 * @return 조회한 guset
+	 * @exception Exception
+	 */
+    public GusetVO selectGuset(GusetVO vo) throws Exception {
+        return (GusetVO) select("gusetDAO.selectGuset_S", vo);
+    }
+
+    /**
+	 * guset 목록을 조회한다.
+	 * @param searchMap - 조회할 정보가 담긴 Map
+	 * @return guset 목록
+	 * @exception Exception
+	 */
+    public List<?> selectGusetList(GusetDefaultVO searchVO) throws Exception {
+        return list("gusetDAO.selectGusetList_D", searchVO);
+    }
+
+    /**
+	 * guset 총 갯수를 조회한다.
+	 * @param searchMap - 조회할 정보가 담긴 Map
+	 * @return guset 총 갯수
+	 * @exception
+	 */
+    public int selectGusetListTotCnt(GusetDefaultVO searchVO) {
+        return (Integer)select("gusetDAO.selectGusetListTotCnt_S", searchVO);
+    }
+
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="guest.dao.GuestMapper">
+	
+
+	<resultMap id="guest" type="guest.vo.GuestVO">
+		<result property="idx" column="idx" />
+		<result property="content" column="content" />
+		<result property="name" column="name" />
+	</resultMap>
+	
+	<insert id="insertGuest">
+		<![CDATA[
+			INSERT INTO guest 
+				( idx
+				  , content
+				  , name )
+			VALUES ( #{idx}
+				  , #{content}
+				  , #{name} )
+		]]>
+	</insert>
+	
+	<update id="updateGuest">
+		<![CDATA[
+			UPDATE guest
+			SET idx=#{idx}
+				, content=#{content}
+				, name=#{name}
+				where idx = #{idx}
+			]]>
+	</update>
+	
+	<delete id="deleteGuest">
+		<![CDATA[
+			DELETE FROM guest
+			where idx = #{idx} 
+			]]>
+	</delete>
+	
+	<select id="selectGuest" resultMap="guest">
+		<![CDATA[
+			SELECT
+				idx
+				, content
+				, name
+			FROM guest
+			]]>
+	</select>
+	
+	<select id="selectGuestList" parameterType="guest.vo.GuestVO" resultType="egovMap">
+			SELECT
+								idx
+								, content
+								, name
+					FROM guest
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					idx = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					content LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY 
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectGuestListTotCnt" parameterType="guest.vo.GuestVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM guest
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					idx = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					content LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

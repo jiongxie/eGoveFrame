@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Guset">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="gusetSerarchVO" type="guest.vo.GusetDefaultVO"/>
+	
+	<resultMap id="guset" class="guest.vo.GusetVO">
+		<result property="idx" column="idx" columnIndex="1"/>
+		<result property="name" column="name" columnIndex="2"/>
+		<result property="content" column="content" columnIndex="3"/>
+	</resultMap>
+	
+	<insert id="gusetDAO.insertGuset_S">
+		<![CDATA[
+			INSERT INTO guset 
+				( idx
+				  , name
+				  , content )
+			VALUES ( #idx#
+				  , #name#
+				  , #content# )
+		]]>
+	</insert>
+	
+	<update id="gusetDAO.updateGuset_S">
+		<![CDATA[
+			UPDATE guset
+			SET idx=#idx#
+				, name=#name#
+				, content=#content#
+			]]>
+	</update>
+	
+	<delete id="gusetDAO.deleteGuset_S">
+		<![CDATA[
+			DELETE FROM guset 
+			]]>
+	</delete>
+	
+	<select id="gusetDAO.selectGuset_S" resultMap="guset">
+		<![CDATA[
+			SELECT
+				idx
+				, name
+				, content
+			FROM guset
+			]]>
+	</select>
+	
+	<select id="gusetDAO.selectGusetList_D" parameterClass="gusetSerarchVO" resultClass="egovMap">
+			SELECT
+								idx
+								, name
+								, content
+					FROM guset
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				idx = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				name LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY 
+				limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="gusetDAO.selectGusetListTotCnt_S" parameterClass="gusetSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM guset
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				idx = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				name LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+
+</sqlMap>

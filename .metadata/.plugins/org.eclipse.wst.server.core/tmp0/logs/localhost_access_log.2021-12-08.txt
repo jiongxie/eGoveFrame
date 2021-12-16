@@ -1,0 +1,5 @@
+127.0.0.1 - - [08/Dec/2021:08:41:48 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [08/Dec/2021:08:41:49 +0900] "GET /guest/ HTTP/1.1" 404 1078
+0:0:0:0:0:0:0:1 - - [08/Dec/2021:08:41:49 +0900] "GET /guest/css/egovframework/sample.css;jsessionid=AC2C91FA639C2999ACE65DF973B40ABB HTTP/1.1" 200 10111
+0:0:0:0:0:0:0:1 - - [08/Dec/2021:08:41:49 +0900] "GET /guest/images/egovframework/example/error_bg.jpg HTTP/1.1" 404 1034
+0:0:0:0:0:0:0:1 - - [08/Dec/2021:08:41:49 +0900] "GET /favicon.ico HTTP/1.1" 404 818
